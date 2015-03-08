@@ -1,5 +1,29 @@
 /*
     Z21 Ethernet Emulation für die App-Steuerung via Smartphone über XpressNet.
+
+  The adress is 10.0.1.111.
+  This program will log to a Syslog server at 10.0.1.101.  
+  May need to disable firewall (sudo ufw disable) and 
+  enable syslog server to receive log messages from outside (enable remote logging)
+
+  Starting:
+  Load firmware 
+  Connect Arduino to Roco Booster Slave 
+  Connect Multimaus to Roco Booster Master
+  Connect LAN Plug
+  Connect Arduino USB Plug with USB Power Supply
+
+  Should start with the following log:
+	Mar  8 21:23:15 z21 Starting XPressNet
+	Mar  8 21:23:15 z21 Starting Z21 Emulation
+	Mar  8 21:23:15 z21 Setup finished
+  
+  Connect Z21 App to 10.0.1.111
+
+  Status:
+  8.3.2015
+  App can control a train, but will not show it on the display (Horn Button is not lid when pressed)
+
  */
  
 #include <XpressNet.h> 
@@ -19,7 +43,7 @@ XpressNetClass XpressNet;
 // The IP address will be dependent on your local network:
 byte mac[] = { 0xFE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 IPAddress ip(10, 0, 1, 111);
-byte loghost[] = { 10, 0, 1, 100 };
+byte loghost[] = { 10, 0, 1, 101 };
 
 EthernetServer server(80);
 
